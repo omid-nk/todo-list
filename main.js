@@ -28,7 +28,9 @@ tasks.forEach(function (task) {
 // -------------------- add task --------------------
 doneBtn.addEventListener("click", addTask);
 
-function addTask() {
+function addTask(event) {
+  if (event) event.preventDefault(); // جلوگیری از submit فرم
+
   const valueInput = addTaskInput.value;
   if (valueInput.trim() === "") return;
 
@@ -55,6 +57,14 @@ function addTask() {
     .addEventListener("click", delTask);
 }
 
+// -------------------- allow Enter key to add task --------------------
+addTaskInput.addEventListener("keydown", function (event) {
+  if (event.key === "Enter") {
+    event.preventDefault();
+    addTask();
+  }
+});
+
 // -------------------- delete task --------------------
 function delTask(event) {
   event.currentTarget.parentElement.remove();
@@ -66,4 +76,12 @@ closeBtn.addEventListener("click", showAddTaskBox);
 
 function showAddTaskBox() {
   AddTaskBox.classList.toggle("showAddTaskBox");
+
+  // وقتی باز شد، input فوکوس بگیره
+  if (AddTaskBox.classList.contains("showAddTaskBox")) {
+    addTaskInput.focus();
+  } else {
+    // وقتی بسته شد، مقدار input پاک بشه
+    addTaskInput.value = "";
+  }
 }

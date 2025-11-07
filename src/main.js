@@ -80,3 +80,82 @@ filterBtn.addEventListener("click", () => {
     filterSection.classList.add("show-section");
   }
 });
+
+// &&&&&&&&&&&&&&
+// To Do List
+// &&&&&&&&&&&&&&
+const toDoList = document.querySelector("#toDoList");
+const plusInput = document.querySelector("#plusInput");
+const plusSubmit = document.querySelector("#plusSubmit");
+
+const todos = [];
+
+// input
+plusSubmit.addEventListener("click", addTodo);
+
+function addTodo() {
+  const todoValue = plusInput.value.trim();
+  if (!todoValue) return;
+
+  const newTodo = {
+    id: Date.now(),
+    title: todoValue,
+    isDone: false,
+  };
+  todos.push(newTodo);
+  plusInput.value = "";
+  closeAllSections();
+  syncArrayWithLocalStorage();
+  syncLocalStorageWithDOM();
+}
+
+function syncArrayWithLocalStorage() {
+  localStorage.setItem("todos", JSON.stringify(todos));
+}
+function syncLocalStorageWithDOM() {
+  const localTodos = JSON.parse(localStorage.getItem("todos"));
+  toDoList.innerHTML = "";
+  localTodos.forEach(function (item) {
+    toDoList.insertAdjacentHTML(
+      "afterbegin",
+      `<article
+        data-id="${item.id}"
+        class="bg-grey dark:bg-darker/80 text-dark my-2 flex items-center justify-between rounded-2xl border p-4 dark:text-white"
+      >
+        <div class="flex items-center gap-3">
+          <svg class="h-8 w-8 cursor-pointer"><use href="#check"></use></svg>
+          <h3 class="cursor-default">${item.title}</h3>
+        </div>
+        <svg class="trashBtn h-8 w-6 cursor-pointer"><use href="#trash"></use></svg>
+      </article>`,
+    );
+  });
+}
+
+function syncLocalStorageWithArray() {
+  const localTodos = JSON.parse(localStorage.getItem("todos"));
+  if (!localTodos) return;
+  localTodos.forEach(function (item) {
+    todos.push(item);
+  });
+  syncLocalStorageWithDOM();
+}
+
+window.addEventListener("DOMContentLoaded", syncLocalStorageWithArray);
+
+// delete todo
+toDoList.addEventListener("click", (e) => {
+  const trash = e.target.closest(".trashBtn");
+  if (trash) {
+    const article = trash.closest("article");
+    const todoId = +article.dataset.id;
+
+    const index = todos.findIndex((todo) => todo.id === todoId);
+
+    if (index !== -1) {
+      todos.splice(index, 1);
+      syncArrayWithLocalStorage();
+      syncLocalStorageWithDOM();
+    }
+  }
+});

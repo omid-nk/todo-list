@@ -10,10 +10,10 @@ const plusIcon = document.querySelector("#plusIcon");
 const plusSection = document.querySelector("#plusSection");
 const searchBtn = document.querySelector("#searchBtn");
 const searchSection = document.querySelector("#searchSection");
-const adjustBtn = document.querySelector("#adjustBtn");
-const adjustSection = document.querySelector("#adjustSection");
+const filterBtn = document.querySelector("#filterBtn");
+const filterSection = document.querySelector("#filterSection");
 
-const allSections = [plusSection, searchSection, adjustSection];
+const allSections = [plusSection, searchSection, filterSection];
 
 // change theme
 themeBtn.addEventListener("click", () => {
@@ -73,10 +73,10 @@ searchBtn.addEventListener("click", () => {
   }
 });
 
-adjustBtn.addEventListener("click", () => {
-  const isOpen = adjustSection.classList.contains("show-section");
+filterBtn.addEventListener("click", () => {
+  const isOpen = filterSection.classList.contains("show-section");
   closeAllSections();
   if (!isOpen) {
-    adjustSection.classList.add("show-section");
+    filterSection.classList.add("show-section");
   }
 });

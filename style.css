@@ -8,19 +8,21 @@ body {
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
   display: flex;
   justify-content: center;
-  padding-top: 90px;
+  padding: 90px 0 40px;
   color: #4a4a4a;
 }
 
 .container {
-  width: 460px;
+  width: 100%;
+  max-width: 460px;
+  padding: 0 18px;
 }
 
 h1 {
   text-align: left;
-
   font-weight: 700;
   margin-bottom: 50px;
+  font-size: 28px;
 }
 
 .input-wrapper {
@@ -54,7 +56,7 @@ input::placeholder {
   background: #5a5a5a;
   color: white;
   cursor: pointer;
-  transition: 0.2s;
+  transition: 0.2s ease;
 }
 
 .add-btn:hover {
@@ -70,16 +72,26 @@ input::placeholder {
   margin-bottom: 20px;
   border: 1px solid #d4d4d4;
   background: #f7f7f7;
+  overflow: hidden;
 }
 
 .todo-left {
   display: flex;
   align-items: center;
   gap: 16px;
+  flex: 1;
+  min-width: 0;
 }
 
 .todo-text {
   font-size: 16px;
+
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+
+  word-break: break-word;
 }
 
 .completed .todo-text {
@@ -93,6 +105,7 @@ input::placeholder {
   font-size: 20px;
   cursor: pointer;
   color: #555;
+  margin-left: 12px;
 }
 
 .footer {
@@ -111,13 +124,39 @@ input::placeholder {
   line-height: 1.5;
 }
 
-.todo-text {
-  font-size: 16px;
+/* ---------- Responsive ---------- */
 
-  display: -webkit-box;
-  -webkit-line-clamp: 2;
-  -webkit-box-orient: vertical;
-  overflow: hidden;
+@media (max-width: 480px) {
+  body {
+    padding: 60px 0 30px;
+  }
 
-  word-break: break-word;
+  h1 {
+    font-size: 24px;
+    margin-bottom: 35px;
+  }
+
+  .todo-item {
+    padding: 14px 16px;
+    border-radius: 16px;
+  }
+
+  .todo-text {
+    font-size: 14px;
+  }
+
+  .add-btn {
+    width: 42px;
+    height: 42px;
+    font-size: 22px;
+    border-radius: 12px;
+  }
+
+  input {
+    font-size: 14px;
+  }
+
+  .quote {
+    font-size: 13px;
+  }
 }

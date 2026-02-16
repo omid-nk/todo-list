@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
+    <title>Todo</title>
+  </head>
+
+  <body>
+    <div class="container">
+      <h1>Your To Do</h1>
+
+      <div class="input-wrapper">
+        <input id="todo-input" placeholder="Add new task" />
+        <button class="add-btn" id="add-btn">+</button>
+      </div>
+
+      <div id="todo-list"></div>
+
+      <div class="footer">
+        Your remaining todos : <span id="remaining">0</span>
+      </div>
+
+      <div class="quote">
+        "Doing what you love is the cornerstone of having abundance in your
+        life." - Wayne Dyer
+      </div>
+    </div>
+
+    <script type="module" src="./app.js"></script>
+  </body>
+</html>

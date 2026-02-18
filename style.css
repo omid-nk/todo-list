@@ -64,29 +64,27 @@ input::placeholder {
 }
 
 .todo-item {
+  position: relative;
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  padding: 18px 20px;
+  padding: 18px 50px 18px 20px;
   border-radius: 20px;
   margin-bottom: 20px;
   border: 1px solid #d4d4d4;
   background: #f7f7f7;
-  overflow: hidden;
 }
 
 .todo-left {
   display: flex;
   align-items: center;
   gap: 16px;
-  flex: 1;
-  min-width: 0;
 }
 
 .todo-text {
   font-size: 16px;
 
   display: -webkit-box;
+  line-clamp: 2;
   -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
   overflow: hidden;
@@ -100,12 +98,15 @@ input::placeholder {
 }
 
 .delete-btn {
+  position: absolute;
+  right: 18px;
+  top: 50%;
+  transform: translateY(-50%);
   background: none;
   border: none;
   font-size: 20px;
   cursor: pointer;
   color: #555;
-  margin-left: 12px;
 }
 
 .footer {
@@ -137,8 +138,14 @@ input::placeholder {
   }
 
   .todo-item {
-    padding: 14px 16px;
-    border-radius: 16px;
+    position: relative;
+    display: flex;
+    align-items: center;
+    padding: 18px 50px 18px 20px;
+    border-radius: 20px;
+    margin-bottom: 20px;
+    border: 1px solid #d4d4d4;
+    background: #f7f7f7;
   }
 
   .todo-text {
